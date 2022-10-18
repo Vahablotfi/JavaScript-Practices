@@ -4,32 +4,36 @@
 
 function reverseString(str) {
   /***************** first method array.reverse **********************/
-
   // return str.split( '' ).reverse().join( '' );
-
   /***************** second method decreasing for loop **********************/
-
   // let reversedStr = "";
   // for ( let i = str.length - 1 ; i >= 0; i-- ){
   //     reversedStr = reversedStr + str[i];
   // }
   // return reversedStr;
-
   /***************** third method increasing for loop **********************/
-
   // let reversedStr = "";
   //   for (let i = 0 ; i < str.length; i++) {
   //     reversedStr = str[i] + reversedStr ;
   //   }
   //   return reversedStr;
-
   /***************** fourth for (of) loop**********************/
+  //   let reversedStr = "";
+  //   for ( chars of str ) {
+  //       reversedStr = chars + reversedStr;
+  //   }
+  //   return reversedStr;
+  /***************** fifth ForEach() method **********************/
+  //   let reversedStr = "";
+  //   str.split("").forEach((chars) => {
+  //     reversedStr = chars + reversedStr;
+  //   });
+  //   return reversedStr;
+  /***************** sixth array.reduce() method **********************/
 
-  let reversedStr = "";
-  for ( chars of str ) {
-      reversedStr = chars + reversedStr;
-  }
-  return reversedStr;
+  return str.split("").reduce((reversedStr, chars) => {
+    return chars + reversedStr;
+  }, "");
 }
 
 console.log(reverseString("Hello Visitors"));
@@ -39,12 +43,17 @@ console.log(reverseString("Hello Visitors"));
 // Return true if palindrome and false if not
 // ex. isPalindrome('racecar') === 'true', isPalindrome('hello') == false
 
-function isPalindrome(str) {
+function isPalindrome ( str ) {
+  ///////////First Method .split()
+  //   const reversedStr = str.split("").reverse().join("");
 
-    const reversedStr = str.split( '' ).reverse().join( '' )
-    
-    return reversedStr === str;
+  //   return reversedStr === str;
 
+  ////////////////Second Method Higher order functions .reduce()
+  const reversedStr = str.split("").reduce((revs, stri) => {
+    return stri + revs;
+  }, "");
+  return reversedStr === str;
 }
 
 console.log(isPalindrome("Kayak"));
@@ -67,15 +76,19 @@ console.log(reverseInt(-491));
 // Return a string with the first letter of every word capitalized
 // ex. capitalizeLetters('i love javascript') === 'I Love Javascript'
 function capitalizeLetters ( str ) {
-  
-  const arrayMaker = str
-    .toLowerCase()
-    .split(" ");
-  
-  for ( let i = 0; i < arrayMaker.length; i++ ){
-      arrayMaker[ i ] = arrayMaker[ i ].substring( 0, 1 ).toUpperCase() + arrayMaker[ i ].substring( 1 );
-  }
-  return arrayMaker.join( ' ' );
+  const arrayMaker = str.toLowerCase().split(" ");
+  ///// First Method Normal Loop
+  //   for (let i = 0; i < arrayMaker.length; i++) {
+  //     arrayMaker[i] =
+  //       arrayMaker[i].substring(0, 1).toUpperCase() + arrayMaker[i].substring(1);
+  //   }
+  //   return arrayMaker.join(" ");
+  /////////////////Second Method ES6 Higher order functions .map()
+  return arrayMaker
+    .map((item) => {
+      return item[0].toUpperCase() + item.substring(1);
+    })
+    .join(" ");
 }
 
 console.log(capitalizeLetters("do you love javascript?"));
@@ -126,6 +139,22 @@ function fizzBuzz () {
 }
 
 fizzBuzz();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
